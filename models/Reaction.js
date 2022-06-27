@@ -19,7 +19,7 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: v => moment(v).format("D MMM YYYY"),
+      get: v => moment(v).format("D MMM YYYY [at] h:mm a")
     },
   },
   {
@@ -29,11 +29,5 @@ const reactionSchema = new Schema(
     id: false,
   }
 );
-
-// Getter to format the created date on query.
-// reactionSchema
-//   .get(()=>{
-//     return this.createdAt = moment(Date.now).format("D MMM YYYY");
-//   });
 
 module.exports = reactionSchema;

@@ -10,9 +10,10 @@ module.exports = {
    //Get one user by id
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
+    
       .then((user) =>
         !user
-          ? res.status(404).json({ message: 'No user with that ID' })
+          ? res.status(404).json({ message: 'No user with that id!' })
           : res.status(200).json(user)
       )
       .catch((err) => res.status(500).json(err));
@@ -32,7 +33,7 @@ module.exports = {
     )
       .then((user) =>
         !user
-          ? res.status(404).json({ message: 'No user with this id!' })
+          ? res.status(404).json({ message: 'No user with that id!' })
           : res.status(200).json(user)
       )
       .catch((err) => res.status(500).json(err));
@@ -42,7 +43,7 @@ module.exports = {
       User.findOneAndDelete({ _id: req.params.userId })
         .then((user) =>
           !user
-            ? res.status(404).json({ message: 'No user with that ID' })
+            ? res.status(404).json({ message: 'No user with that id!' })
             : Thought.deleteMany({ _id: { $in: user.thoughts } })
         )
         .then(() => res.json({ message: 'User and thoughts deleted!' }))
@@ -57,7 +58,7 @@ module.exports = {
       )
         .then((user) =>
           !user
-            ? res.status(404).json({ message: 'No user with this id!' })
+            ? res.status(404).json({ message: 'No user with that id!' })
             : res.status(200).json(user)
         )
         .catch((err) => res.status(500).json(err));
@@ -71,7 +72,7 @@ module.exports = {
       )
         .then((user) =>
           !user
-            ? res.status(404).json({ message: 'No user with this id!' })
+            ? res.status(404).json({ message: 'No user with that id!' })
             : res.status(200).json(user)
         )
         .catch((err) => res.status(500).json(err));

@@ -17,6 +17,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: v => moment(v).format("D MMM YYYY [at] h:mm a"),
     },
     reactions: [reactionSchema],
   },
@@ -27,12 +28,6 @@ const thoughtSchema = new Schema(
     id: false,
   }
 );
-
-// Getter to format the created date on query.
-thoughtSchema
-  .get(()=>{
-    return this.createdAt = moment(Date.now).format("D MMM YYYY");
-  });
 
 // Create a virtual property `reactionCount` that gets the amount of reactions per thought
 thoughtSchema
