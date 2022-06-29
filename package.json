@@ -1,25 +1,26 @@
 {
-  "name": "sidekick",
-  "version": "1.0.0",
-  "description": "Social network application.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/robertpdavis/sidekick.git"
-  },
-  "author": "Rob Davis",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/robertpdavis/sidekick/issues"
-  },
-  "homepage": "https://github.com/robertpdavis/sidekick#readme",
-  "dependencies": {
-    "express": "^4.18.1",
-    "moment": "^2.29.3",
-    "mongoose": "^6.4.0",
-    "nodemon": "^2.0.18"
-  }
+    "name": "sidekick",
+    "version": "1.0.0",
+    "description": "Social network application.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/robertpdavis/sidekick.git"
+    },
+    "author": "Rob Davis",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/robertpdavis/sidekick/issues"
+    },
+    "homepage": "https://github.com/robertpdavis/sidekick#readme",
+    "dependencies": {
+        "express": "^4.18.1",
+        "moment": "^2.29.3",
+        "mongoose": "^6.4.0",
+        "nodemon": "^2.0.18"
+    }
 }
