@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-Social network application where users can express thoughts and others can react to them. Built using node.js, express.js with a mongo database backend managed by mongoose and moment.js to format date/time.
+Social network api application where users can express thoughts and others can react to them. Built using node.js, express.js with a mongo database backend managed by mongoose and moment.js to format date/time.
 
 
 ## Table of Contents
