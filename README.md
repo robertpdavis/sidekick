@@ -44,7 +44,7 @@ Run the server application by typing npm start in the console. The following api
 - GET api/users/:id > returns the user matching :id and the user's thought and friend objects.
 - POST api/users/ > creates new user - username and email json keys required.
 - PUT api/users/:id > updates email for user with matching :id.
-- DELETE api/users/:id > deletes a user with the matching id and removes from any other user friends list.
+- DELETE api/users/:id > deletes a user with the matching id and removes thoughts and user from any other user friends list.
 - POST api/users/:userId/friends/:friendId > Adds user with friendId to user with userId.
 - DELETE api/users/:userId/friends/:friendId > Removes user with friendId from user with userId.
 
