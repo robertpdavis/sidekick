@@ -1,6 +1,8 @@
 const { Schema, Types } = require('mongoose');
 const moment = require('moment');
 
+//Schema only to be used in the thought model as a sub document
+
 const reactionSchema = new Schema(
   {
     reactionId: {
@@ -19,6 +21,7 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      //Use moment in get function to format the date before response
       get: v => moment(v).format("D MMM YYYY [at] h:mm a")
     },
   },

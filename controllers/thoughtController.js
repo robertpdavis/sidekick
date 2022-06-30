@@ -22,6 +22,7 @@ module.exports = {
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
+        //Add it to the user thoughts array
         return User.findOneAndUpdate(
           { _id: req.body.userId },
           { $addToSet: { thoughts: thought._id } },
@@ -60,6 +61,7 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that id!' })
+          //Remove the thought from the users thought array
           : User.findOneAndUpdate(
             { thoughts: req.params.thoughtId },
             { $pull: { thoughts: req.params.thoughtId } },

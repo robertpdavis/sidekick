@@ -11,6 +11,7 @@ module.exports = {
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select('-__v')
+      //Populate the any thought and friend objects in the response
       .populate('thoughts')
       .populate('friends')
       .then((user) =>
@@ -46,9 +47,11 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No user with that ID' })
+          //Delete all the users thoughts as well
           : Thought.deleteMany({ _id: { $in: user.thoughts } })
       )
       .then(() =>
+        //Remove from other users friends
         User.updateMany(
           { friends: req.params.userId },
           { $pull: { friends: req.params.userId } },

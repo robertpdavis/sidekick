@@ -14,6 +14,7 @@ const userSchema = new Schema(
       unique: true,
       required: true,
       trim: true,
+      //Email regex
       match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     },
     thoughts: [
