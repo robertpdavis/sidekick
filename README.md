@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Description
-Social network application where users can express thoughts and others can react to them.
+Social network application where users can express thoughts and others can react to them. Built using node.js, express.js with a mongo database backend managed by mongoose and moment.js to format date/time.
 
 
 ## Table of Contents
@@ -18,58 +18,49 @@ Social network application where users can express thoughts and others can react
 ## Installation
 Node.js must be installed. Required npm packages:
 * Express
-* mysql2
-* sequelize
-* dotenv
-* express-session 
-* express-session-seqelize
-* expess-handlebars
-* bcrypt
+* mongoose
+* moment
 
-Firstly initialise the npm in the directory for the application by typing npm init in the console. The dependencies can be installed by typing npm install. Ensure the package.json and package-lock.json files are included in the directory. For localhost use, you will need to create a new mysql database (techpostit_db) see db/schema.sql and can populate sample data with node ./seeds/. You will also need to create a .env file for database connection details. Make sure this file is noted in .gitignore.
-
-If installing on Heroku, you will need to create a new app and git push on Heroku. The JAWSDB addon is required and make sure the config/connection.js refers to the process.env.JAWSDB_URL var. You will also need to create a SECRET config var in Heroku for the session secret.
-
-You can use your local repo to seed the database by getting the JAWSDB url details by typing heroku config:get JAWSDB_URL in the console (or via the url) and using that for you seed connection.
+Firstly initialise the npm in the directory for the application by typing npm init in the console. The dependencies can be installed by typing npm install. Ensure the package.json and package-lock.json files are included in the directory. For localhost use, you will need to ensure the mongo database is installed.
 
 File structure of the application:
 ```md
 .
-├── config/                // contains the sequelize connection.js file
-├── controllers/                // contains the route files
-├── db/                    // schema for creating database
-├── models/                // the sequelize database model files
-├── seeds/                 // contains seed data for the database
-├── utils/                 // authentication and other helpers
-├── views/                 // handlebars layout and view files
-├── .env.EXAMPLE/          // exmaple env file for the database environmental variables
+├── config/                // contains the mongo databased connection.js file
+├── controllers/           // contains the user and thought controller functions for the routes
+├── models/                // mongoose schema and model initialisation for the mongo database
+├── routes/                 // express route mapping to the controller functions
 ├── .gitignore             // indicates which folders and files Git should ignore
 ├── LICENCE                // licence file
-├── server.js              // main code script to run application
+├── index.js               // entry script to run application
 ├── package-lock.json      
 └── package.json           
 ```
 
 ## Usage
-Run the server application by typing npm start in the console. The following routes are then available:
-homeroutes
-- GET / > home page
-- GET /dashboard > user dashboard page
-- GET /dashboard > user create post page
-- GET /dashboard/view/:id > user view post page (with update and delete options)
-- GET /post/:id > general view post and comments and add comment
-- GET /login > login page
-- GET /signup > sigup page
-api routes
-- POST /user/ > create user
-- POST /user/login/ > login and set session
-- POST /user/logout/ > logout and destrou session
-- POST /post/ > create post
-- POST /post/comment > create comment
-- PUT /post/:id > update post
-- DELETE /post/:id > delete post
+Run the server application by typing npm start in the console. The following api routes are then available:<br>
+<ins>User Routes<ins>
+- GET api/users > returns all user objects including user thought and friend ids.
+- GET api/users/:id > returns the user matching :id and the user's thought and friend objects.
+- POST api/users/ > creates new user - username and email json keys required.
+- PUT api/users/:id > updates email for user with matching :id.
+- DELETE api/users/:id > deletes a user with the matching id and removes from any other user friends list.
+- POST api/users/:userId/friends/:friendId > Adds user with friendId to user with userId.
+- DELETE api/users/:userId/friends/:friendId > Removes user with friendId from user with userId.
 
-Live website is available at Heroku: https://techpostit.herokuapp.com
+<ins>Thought Routes<ins>
+- GET api/thoughts > returns all thought objects including the thought's reaction objects.
+- GET api/thoughts/:id > returns the thought matching :id and the thought's reaction objects.
+- POST api/thoughts/ > creates new thought - thoughtText, username and userId json keys required.
+- PUT api/thoughts/:id > updates thoughtText for thought with matching :id.
+- DELETE api/thoughts/:id > deletes a thought with the matching id and removes from the users thoughts list.
+- POST api/thoughts/:id > Adds a reaction to a thought with matching id - reactionBody, username json keys required.
+- DELETE api/thoughts/:thoughtId/reactions/:reactionId > Removes reaction with reactionId from thought with thoughtId.
+
+Refer to the below demonstation video links:
+* User routes (except user update and delete) - https://drive.google.com/file/d/18EXJhwBEhot5AnaFBkyaTFooYY15pkjE/view
+* All other routes: https://drive.google.com/file/d/1aZA9NQ9gmj_jyKGi7drhg0um-ChXVppD/view
+
 
 ## Credits
 Rob Davis Github: [robertpdavis](https://github.com/robertpdavis)
